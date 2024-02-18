@@ -14,6 +14,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = BASE_DIR.joinpath('templates')
+STATIC_DIR = BASE_DIR.joinpath('static')
+MEDIA_DIR = BASE_DIR.joinpath('media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +44,11 @@ INSTALLED_APPS = [
     'App_Login',
     'App_QnA',
     'App_Quizzes',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +65,7 @@ ROOT_URLCONF = 'ESchool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -119,7 +126,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIR =[STATIC_DIR,]
+
+# Media files
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
