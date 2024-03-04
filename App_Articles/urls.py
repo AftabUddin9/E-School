@@ -3,3 +3,6 @@ from App_Articles import views
 
 app_name = 'App_Articles'
 
+urlpatterns = [
+    
+]
