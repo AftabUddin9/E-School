@@ -11,6 +11,8 @@ class CustomUser(AbstractUser):
 
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='student')
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    student_field = models.CharField(max_length=100, blank=True)
+    teacher_field = models.CharField(max_length=100, blank=True)
     
     groups = models.ManyToManyField(
         'auth.Group',
@@ -28,3 +30,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to='profile_pics')
+
+    def __str__(self):
+        return self.user.username

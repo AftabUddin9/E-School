@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Profile - ESchool{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Your Profile</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-3">Username:</dt>
+                    <dd class="col-sm-9">{{ user_profile.user.username }}</dd>
+
+                    <!-- Add more fields as needed
+                    <dt class="col-sm-3">Field 1:</dt>
+                    <dd class="col-sm-9">{{ user_profile.field1 }}</dd>
+
+                    <dt class="col-sm-3">Field 2:</dt>
+                    <dd class="col-sm-9">{{ user_profile.field2 }}</dd>
+
+                    Add additional fields specific to the user profile -->
+                </dl>
+            </div>
+        </div>
+        <p>Edit your profile <a href="{% url 'App_Login:edit_profile' %}">here</a>.</p>
+    </div>
+{% endblock %}

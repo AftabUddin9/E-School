@@ -7,14 +7,43 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mb-4">Register</h2>
-            
+
             <form method="POST" class="form">
                 {% csrf_token %}
                 {{ form|crispy }}
+
+                <!-- User Type Field -->
+                <div class="form-group">
+                    <label for="id_user_type">User Type</label>
+                    <select id="id_user_type" name="user_type" class="form-control">
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+
+                <!-- Additional Fields for Student -->
+                <div id="student_fields" style="display: none;">
+                    {{ student_form|crispy }}
+                </div>
+
+                <!-- Additional Fields for Teacher -->
+                <div id="teacher_fields" style="display: none;">
+                    {{ teacher_form|crispy }}
+                </div>
+
                 <button type="submit" class="btn btn-success">Register</button>
             </form>
 
             <p class="mt-3">Already have an account? <a href="{% url 'App_Login:login' %}">Login here</a></p>
         </div>
     </div>
+
+    <script>
+        // Show/hide additional fields based on selected user type
+        document.getElementById('id_user_type').addEventListener('change', function () {
+            var userType = this.value;
+            document.getElementById('student_fields').style.display = userType === 'student' ? 'block' : 'none';
+            document.getElementById('teacher_fields').style.display = userType === 'teacher' ? 'block' : 'none';
+        });
+    </script>
 {% endblock %}
